@@ -2,6 +2,8 @@
    <section> 
       <h2>Детали репозитория: {{ selectedCardData.name }}</h2>      
       <ul>
+         <li>Имя репозитория: {{selectedCardData.name}}</li>
+         <li>Url адрес: <a :href="selectedCardData.url" target="_blank">{{selectedCardData.url}}</a></li>
          <li>Forks: {{selectedCardData.forks}}</li>
       </ul>          
    </section>  
@@ -54,6 +56,7 @@ export default {
       text-decoration: none;
    }
    li {
-      list-style-type: none
+      list-style-type: none;
+      font-size: 18px;
    }
 </style>
