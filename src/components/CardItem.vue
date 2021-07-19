@@ -6,7 +6,7 @@
       <p class="stars">Звездочки: <span>{{ stars }}</span></p>
       <p class="forks">Форки: <span>{{ forks }}</span></p>
       <router-link :to="urlCard" class="button">Подробнее</router-link>
-   </li>      
+   </li>        
 </template>
 
 <script>
@@ -31,17 +31,17 @@ export default {
       },
       id: {
          type: Number,
-      }
+      },     
    },
    data() {
       return {
-         idCard: '',
+         idCard: '',         
       }
    },
    computed: {
       urlCard() {
          return '/info/' + this.idCard;
-      }
+      },
    },
    created() {
       const listId = [this.id];   

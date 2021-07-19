@@ -5,7 +5,7 @@
          <label for>
             <input type="text" placeholder="Введите никнейм" v-model.trim="search">            
          </label>         
-         <button @click.enter="requests">Поиск</button>
+         <button @click.enter="requests" class="btn-search">Поиск</button>
          <p v-if="warning" class="warning">Необходимо ввести никнейм искомого пользователя!</p>
          <p v-else-if="error.show" class="warning">{{error.message}}</p>
       </section>
@@ -85,5 +85,17 @@ export default {
       color: #E32636;
       font-size: 18px;
       font-weight: 700;
+   }
+   .btn-search {
+      margin-left: 10px;
+      border: 1px solid #A3DBFF;
+      background-color: #fff;
+      font-weight: 700;      
+      padding: 3px 5px;            
+      border-radius: 10px;
+      height: 25px;
+   }
+   .btn-search:hover {
+      box-shadow: 0px 5px 42px 22px rgba(161, 161, 161, 0.51);
    }  
 </style>
