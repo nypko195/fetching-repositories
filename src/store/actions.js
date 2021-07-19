@@ -1,35 +1,24 @@
+import helpersApi from "../helpers/helpersApi";
+import helpersArr from "../helpers/helpersArr";
+
 export default {
    async  requestReprisitories(context) { 
       let nameRepres = context.getters.nameRepres;
-      const response = await fetch(`https://api.github.com/users/${nameRepres}/repos`)
-      const responseData = await response.json();
-      
-      console.log(responseData);
+      let urlGitApi = helpersApi.namesRepres(nameRepres);   
+
+      const response = await fetch(urlGitApi)
+      const arrDataGitApi = await response.json();    
 
       if(!response.ok) {
-         console.log(responseData);
+         console.log(arrDataGitApi);
          
-         const error = new Error(responseData.message || 'Не найден, попробуйте снова.')
-         throw error;
-      } 
-
-         
-      const readyData = [];
-
-      for(let item in responseData) {
-         const requiredData = {
-            id: responseData[item].id,
-            name: responseData[item].name,
-            url: responseData[item].html_url,
-            desc: responseData[item].description,
-            stars: responseData[item].stargazers_count,
-            forks: responseData[item].forks_count
-         }
-         readyData.push(requiredData)
+         const error = new Error(arrDataGitApi.message || 'Не найден, попробуйте снова.')
+         console.log(error);
+         throw error;         
       }
 
-      context.commit('requestResponse', readyData);
+      let readyDataGitApi = helpersArr.bruteForceResponceApi(arrDataGitApi);     
 
-      console.log(readyData);       
-   }
+      context.commit('requestResponse', readyDataGitApi);         
+   },   
 }

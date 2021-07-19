@@ -1,9 +1,9 @@
 <template>    
    <li>     
-      <p>Имя репозитория: <span>{{ name }}</span></p>
-      <p>Описание: <span>{{ desc }}</span></p>
-      <p>Url: <br> <a :href="url">{{ url }}</a></p>
-      <p>Звездочки: <span>{{ stars }}</span></p>
+      <p class="name">Имя репозитория: <span>{{ name }}</span></p>
+      <p class="desc">Описание: <span>{{ desc }}</span></p>
+      <p class="url">Url: <br> <a :href="url">{{ url }}</a></p>
+      <p class="stars">Звездочки: <span>{{ stars }}</span></p>
       <p class="forks">Форки: <span>{{ forks }}</span></p>
       <router-link :to="urlCard" class="button">Подробнее</router-link>
    </li>      
@@ -11,10 +11,31 @@
 
 <script>
 export default {
-   props: ['name', 'desc', 'url', 'stars', 'forks', 'id'],
+   props: {
+      name: {
+         type: String,
+      },
+      desc: {
+         type: String,
+      },
+      url: {
+         type: String,
+      },
+      stars: {
+         type: Number,
+         default: 0,
+      },
+      forks: {
+         type: Number,
+         default: 0,
+      },
+      id: {
+         type: Number,
+      }
+   },
    data() {
       return {
-         idCard: null,
+         idCard: '',
       }
    },
    computed: {
@@ -23,11 +44,9 @@ export default {
       }
    },
    created() {
-      const listId = [];
-      listId.push(this.id);      
-
-      const idCard = listId.find(arr => arr.id === this.$route.params.id)
-      this.idCard = idCard
+      const listId = [this.id];   
+      
+      this.idCard = listId.find(arr => arr.id === this.$route.params.id)      
    },   
 }
 </script>
@@ -58,5 +77,15 @@ export default {
       background: #A3DBFF;
       border-radius: 10px;
       padding: 3px 0;
-   }  
+   } 
+   .button:hover {
+      box-shadow: 0px 5px 10px 2px rgba(163, 219, 255, 0.8);
+   }
+   .desc, .url {
+      word-wrap: break-word;
+   } 
+   .url a:hover {
+      background: #dde7ee;
+      box-shadow: 0px 5px 10px 2px rgba(221, 231, 238, 1);
+   }
 </style>

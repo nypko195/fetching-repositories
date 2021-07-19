@@ -13,7 +13,12 @@
 
 
 export default {
-   props: ['id'],   
+   props: {
+      id: {
+         type: String,
+         required: true
+      }
+      },   
    data() {
       return {
          selectedCardData: [],
@@ -25,8 +30,8 @@ export default {
       },
    },
    methods: { 
-      searchRepositories() {      
-      let cardData = [];
+      goOverCardData() {
+         let cardData = [];
          for(let item in this.repositories) {
             const obj = {
                id: this.repositories[item].id,
@@ -37,8 +42,10 @@ export default {
             }            
             cardData.push(obj);                     
          }
-                  
-         this.selectedCardData = cardData.find(arr => arr.id === +this.id);        
+         return cardData;
+      },
+      searchRepositories() {                           
+         this.selectedCardData = this.goOverCardData().find(arr => arr.id === +this.id);        
          console.log(this.selectedCardData);             
       }      
    }, 

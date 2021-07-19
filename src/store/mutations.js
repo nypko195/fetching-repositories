@@ -1,8 +1,8 @@
 export default {
    renewalState(state, payload) {
-      state.name = payload.search;
+      state.searchNickname = payload.search;
    },
    requestResponse(state, payload) {
-      state.requestData = payload;
+      state.arrDataGitApi = payload;
    },   
 }

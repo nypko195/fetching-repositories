@@ -1,8 +1,8 @@
 export default {
    nameRepres(state) {
-      return state.name;
+      return state.searchNickname;
    },
    response(state) {
-      return state.requestData;
+      return state.arrDataGitApi;
    }            
 }

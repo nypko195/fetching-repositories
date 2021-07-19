@@ -2,7 +2,7 @@
    <div class="result"> 
       <h2>Cписок найденных репризиториев</h2>    
       <ul>      
-         <card-item :list-data="people" class="item" v-for="item in repositories" 
+         <card-item class="item" v-for="item in repositories" 
          :key="item.id"
          :id="item.id"
          :name="item.name"
