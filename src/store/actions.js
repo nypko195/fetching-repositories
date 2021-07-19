@@ -12,8 +12,7 @@ export default {
       if(!response.ok) {
          console.log(arrDataGitApi);
          
-         const error = new Error(arrDataGitApi.message || 'Не найден, попробуйте снова.')
-         console.log(error);
+         const error = new Error(arrDataGitApi.message || 'Не найден, попробуйте снова.')         
          throw error;         
       }
 

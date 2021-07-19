@@ -39,22 +39,32 @@ export default {
             search: this.search
          })
 
-         if(this.search === '') {
-            this.warning = true;                            
-            return
-         }
+         
          try {
+            if(this.search === '') {
+               this.warning = true;
+               this.show = false; 
+               setTimeout(() => {
+                  this.warning = false;
+               }, 3000); 
+               return
+            }
+
             await this.$store.dispatch('requestReprisitories');
             this.show = true;            
-            this.warning = false;
-            this.search = '';
+            this.warning = false;            
          } catch (error) { 
             this.show = false;             
-            this.error.show = true;
+            this.error.show = true;            
+            this.error.message = 'Такой никнейм не существует!'; 
+            setTimeout(() => {
+                  this.error.show = false;
+               }, 3000);           
+         } finally {
             this.search = '';
-            this.error.message = 'Такой никнейм не существует!';            
+            
          }   
-      },          
+      },           
    },    
 }
 </script>
