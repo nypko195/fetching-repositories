@@ -6,7 +6,7 @@
 
 <style scoped>
    section {
-      max-width: 650px;
+      max-width: 650px;      
       margin: 30px auto;
       border: 1px solid #A3DBFF;      
       padding: 50px;

@@ -1,8 +1,7 @@
 <template>
    <base-style>
       <router-view></router-view> 
-   </base-style>
-         
+   </base-style>         
 </template>
 
 <script>

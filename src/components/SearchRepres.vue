@@ -76,10 +76,11 @@ export default {
    }
    .result {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 30px;      
    }
    input {
       margin: 0 10px 0 0;
+      cursor: pointer;
    }
    .warning {
       color: #E32636;
@@ -94,6 +95,7 @@ export default {
       padding: 3px 5px;            
       border-radius: 10px;
       height: 25px;
+      cursor: pointer;
    }
    .btn-search:hover {
       box-shadow: 0px 5px 42px 22px rgba(161, 161, 161, 0.51);

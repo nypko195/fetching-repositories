@@ -2,7 +2,7 @@
    <li>     
       <p class="name">Имя репозитория: <span>{{ name }}</span></p>
       <p class="desc">Описание: <span>{{ desc }}</span></p>
-      <p class="url">Url: <br> <a :href="url">{{ url }}</a></p>
+      <p class="url">Url: <br> <a :href="url" target="_blank">{{ url }}</a></p>
       <p class="stars">Звездочки: <span>{{ stars }}</span></p>
       <p class="forks">Форки: <span>{{ forks }}</span></p>
       <router-link :to="urlCard" class="button">Подробнее</router-link>

@@ -12,8 +12,8 @@
          :forks="item.forks"                    
          ></card-item> 
          <div class="list-btn">
-            <button class="btn" @click="pagePrev">Назад</button>
-            <p>{{page}}</p>
+            <button class="btn" @click="pagePrev">Назад</button>            
+            <p class="main-page">{{ page }}</p>           
             <button class="btn" @click="pageNext">Вперед</button> 
          </div>                                   
       </ul>      
@@ -28,9 +28,8 @@ export default {
       CardItem
    }, 
    data() {
-      return {  
-         arr: [],       
-         page: 1,
+      return {                                 
+         page: +this.$route.query.page || 1,                                      
       }
    },     
    computed: {
@@ -44,25 +43,29 @@ export default {
       filterEnd() {
           const end = this.page * 4;  
          return end;
-      }
+      },         
    },
-   methods: {
+   methods: {            
       pageNext() {          
-         this.page++       
+         if(this.repositories.length === 0) { 
+            return 
+         }
+         this.page++ 
+         this.$router.push(`${this.$route.path}?page=${this.page}`)        
       },
-      pagePrev() {
-         if(this.page === 1) {
+      pagePrev() {        
+         if(this.page === 1) {                       
             return;
          }             
          this.page--
-         
-      }
+         this.$router.push(`${this.$route.path}?page=${this.page}`)         
+      },     
    }               
 }
 </script>
 
-<style scoped>  
-   ul  { 
+<style scoped>   
+   ul { 
       position: relative;
       text-decoration: none;     
       display: flex;
@@ -98,9 +101,11 @@ export default {
       top: 98%;
       left: 38%;
    }
-   .list-btn p {      
+   .main-page {      
       margin-left: 10px;
-      font-weight: 700;     
+      font-weight: 700;  
+      font-size: 18px;  
+      cursor: pointer; 
    }
    .btn {      
       margin-left: 10px;
@@ -111,11 +116,12 @@ export default {
       padding: 3px 5px;            
       border-radius: 10px;
       height: 25px;
-   }
+      cursor: pointer;
+   }  
    .btn:first-child {
       margin: 0;
    }
    .btn:hover {
       box-shadow: 0px 5px 42px 22px rgba(161, 161, 161, 0.51);
-   }
+   }   
 </style>

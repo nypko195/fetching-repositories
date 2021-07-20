@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 
 
 import CardDetails from './components/CardDetails.vue';
-
 import SearchRepres from './components/SearchRepres.vue';
 
 
