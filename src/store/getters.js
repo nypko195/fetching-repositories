@@ -3,6 +3,6 @@ export default {
       return state.searchNickname;
    },
    response(state) {
-      return state.arrDataGitApi;
+      return state.arrayOfRepositoresDetails;
    }            
 }

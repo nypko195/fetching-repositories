@@ -3,6 +3,6 @@ export default {
       state.searchNickname = payload.search;
    },
    requestResponse(state, payload) {
-      state.arrDataGitApi = payload;
+      state.arrayOfRepositoresDetails = payload;
    },   
 }

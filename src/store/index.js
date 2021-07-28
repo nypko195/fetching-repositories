@@ -8,7 +8,7 @@ const store = createStore({
    state() {
       return {
          searchNickname:'',
-         arrDataGitApi: [],         
+         arrayOfRepositoresDetails: [],         
       }
    },
    mutations,

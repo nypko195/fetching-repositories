@@ -3,7 +3,7 @@
       <section class="search">
          <h2>Поиск репозиториев</h2>
          <label for>
-            <input type="text" placeholder="Введите никнейм" v-model.trim="search">            
+            <input @keyup.enter="requests" type="text" placeholder="Введите никнейм" v-model.trim="search">            
          </label>         
          <button @click.enter="requests" class="btn-search">Поиск</button>
          <p v-if="warning" class="warning">Необходимо ввести никнейм искомого пользователя!</p>
@@ -30,7 +30,7 @@ export default {
          error: {
             message: '',
             show: false,
-         }
+         },                  
       }
    },
    methods: {          
@@ -38,7 +38,6 @@ export default {
          this.$store.commit('renewalState', {
             search: this.search
          })
-
          
          try {
             if(this.search === '') {
@@ -50,7 +49,7 @@ export default {
                return
             }
 
-            await this.$store.dispatch('requestReprisitories');
+            await this.$store.dispatch('requestReprisitories');                     
             this.show = true;            
             this.warning = false;            
          } catch (error) { 
@@ -61,10 +60,9 @@ export default {
                   this.error.show = false;
                }, 3000);           
          } finally {
-            this.search = '';
-            
+            this.search = '';            
          }   
-      },           
+      },                
    },    
 }
 </script>
@@ -96,8 +94,5 @@ export default {
       border-radius: 10px;
       height: 25px;
       cursor: pointer;
-   }
-   .btn-search:hover {
-      box-shadow: 0px 5px 42px 22px rgba(161, 161, 161, 0.51);
-   }  
+   }     
 </style>

@@ -1,5 +1,10 @@
-export default {
-   bruteForceResponceApi(array) {
+export default {   
+   readyUrlApi(nickname) {     
+      let urlApi = `https://api.github.com/users/${nickname}/repos`;      
+      return urlApi;
+   },
+
+   filteredDataApi(array) {
       const readyDataGitApi = [];
 
       for(let item in array) {
@@ -14,5 +19,5 @@ export default {
          readyDataGitApi.push(sortedDataApi)
       }
       return readyDataGitApi;
-   }
+   }  
 }

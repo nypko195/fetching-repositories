@@ -1,18 +1,16 @@
 <template>
-   <section> 
+   <section>       
       <h2>Детали репозитория: {{ selectedCardData.name }}</h2>      
       <ul>
          <li>Имя репозитория: {{selectedCardData.name}}</li>
          <li>Url адрес: <a :href="selectedCardData.url" target="_blank">{{selectedCardData.url}}</a></li>
-         <li>Forks: {{selectedCardData.forks}}</li>
+         <li>Forks: {{selectedCardData.forks}}</li>             
       </ul>          
    </section>  
 </template>
 
 <script>
-
-
-export default {
+export default {   
    props: {
       id: {
          type: String,
@@ -29,8 +27,8 @@ export default {
          return this.$store.getters.response;
       },
    },
-   methods: { 
-      goOverCardData() {
+   methods: {      
+      overCardData() {         
          let cardData = [];
          for(let item in this.repositories) {
             const obj = {
@@ -45,7 +43,7 @@ export default {
          return cardData;
       },
       searchRepositories() {                           
-         this.selectedCardData = this.goOverCardData().find(arr => arr.id === +this.id);        
+         this.selectedCardData = this.overCardData().find(arr => arr.id === +this.id);        
          console.log(this.selectedCardData);             
       }      
    }, 

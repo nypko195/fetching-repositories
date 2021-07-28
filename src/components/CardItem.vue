@@ -77,15 +77,8 @@ export default {
       background: #A3DBFF;
       border-radius: 10px;
       padding: 3px 0;
-   } 
-   .button:hover {
-      box-shadow: 0px 5px 10px 2px rgba(163, 219, 255, 0.8);
-   }
+   }   
    .desc, .url {
       word-wrap: break-word;
-   } 
-   .url a:hover {
-      background: #dde7ee;
-      box-shadow: 0px 5px 10px 2px rgba(221, 231, 238, 1);
-   }
+   }  
 </style>

@@ -1,10 +1,9 @@
-import helpersApi from "../helpers/helpersApi";
-import helpersArr from "../helpers/helpersArr";
+import helpers from "../helpers/helpers.js";
 
 export default {
    async  requestReprisitories(context) { 
       let nameRepres = context.getters.nameRepres;
-      let urlGitApi = helpersApi.namesRepres(nameRepres);   
+      let urlGitApi = helpers.readyUrlApi(nameRepres);   
 
       const response = await fetch(urlGitApi)
       const arrDataGitApi = await response.json(); 
@@ -18,7 +17,7 @@ export default {
          throw error;         
       }
 
-      let readyDataGitApi = helpersArr.bruteForceResponceApi(arrDataGitApi);     
+      let readyDataGitApi = helpers.filteredDataApi(arrDataGitApi);     
 
       context.commit('requestResponse', readyDataGitApi);         
    },   

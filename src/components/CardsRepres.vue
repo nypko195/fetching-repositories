@@ -12,9 +12,9 @@
          :forks="item.forks"                    
          ></card-item> 
          <div class="list-btn">
-            <button class="btn" @click="pagePrev">Назад</button>            
+            <button class="btn-prev btn" @click="pagePrev" v-show="isShowBtnPagePrev">Назад</button>            
             <p class="main-page">{{ page }}</p>           
-            <button class="btn" @click="pageNext">Вперед</button> 
+            <button class="btn-next btn" @click="pageNext" v-show="isShowBtnPageNext">Вперед</button> 
          </div>                                   
       </ul>      
    </div>   
@@ -26,14 +26,15 @@ import CardItem from './CardItem.vue';
 export default {   
    components: {
       CardItem
-   }, 
+   },   
+   emits: ['update-page'], 
    data() {
       return {                                 
-         page: +this.$route.query.page || 1,                                      
+         page: +this.$route.query.page || 1,                                         
       }
    },     
    computed: {
-      repositories() {                    
+      repositories: function() {          
          return this.$store.getters.response.slice(this.filterStart, this.filterEnd);
       }, 
       filterStart() {
@@ -43,23 +44,31 @@ export default {
       filterEnd() {
           const end = this.page * 4;  
          return end;
-      },         
+      },
+      isShowBtnPagePrev: function() {
+         if(this.page === 1) {                       
+            return false;
+         } else {
+            return true;
+         }  
+      },
+      isShowBtnPageNext: function() {
+         if(this.repositories.length === 4) {
+            return true;
+         } else {
+            return false;
+         }
+      }         
    },
    methods: {            
-      pageNext() {          
-         if(this.repositories.length === 0) { 
-            return 
-         }
+      pageNext() {        
          this.page++ 
          this.$router.push(`${this.$route.path}?page=${this.page}`)        
       },
-      pagePrev() {        
-         if(this.page === 1) {                       
-            return;
-         }             
+      pagePrev() {                   
          this.page--
          this.$router.push(`${this.$route.path}?page=${this.page}`)         
-      },     
+      },       
    }               
 }
 </script>
@@ -71,8 +80,7 @@ export default {
       display: flex;
       flex-direction: row; 
       flex-wrap: wrap;     
-      border-radius: 10px;
-      margin: 0 0 0 10px;
+      border-radius: 10px;     
       padding: 0; 
       color: #000;  
       border-radius: 10px;   
@@ -92,23 +100,20 @@ export default {
    .item:nth-child(n+3) {
       margin-top: 10px;
    }
-   .list-btn {
-      margin: 0 auto;
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-      position: absolute;
-      top: 98%;
-      left: 38%;
+   .list-btn {  
+      width: 100%;
+      height: 30px;         
+      position: relative;     
    }
-   .main-page {      
-      margin-left: 10px;
+   .main-page { 
+      position: absolute;
+      top: 50%;
+      left: 48.5%;      
       font-weight: 700;  
       font-size: 18px;  
       cursor: pointer; 
    }
-   .btn {      
-      margin-left: 10px;
+   .btn {     
       border: 1px solid #A3DBFF;
       background-color: #fff;
       font-weight: 700;
@@ -117,11 +122,15 @@ export default {
       border-radius: 10px;
       height: 25px;
       cursor: pointer;
-   }  
-   .btn:first-child {
-      margin: 0;
    }
-   .btn:hover {
-      box-shadow: 0px 5px 42px 22px rgba(161, 161, 161, 0.51);
-   }   
+   .btn-next {
+      position: absolute;
+      top: 102%;
+      left: 52%;
+   } 
+   .btn-prev {
+      position: absolute;
+      top: 102%;
+      left: 37%;
+   }        
 </style>
