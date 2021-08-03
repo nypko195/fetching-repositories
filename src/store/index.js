@@ -8,7 +8,8 @@ const store = createStore({
    state() {
       return {
          searchNickname:'',
-         arrayOfRepositoresDetails: [],         
+         arrayOfRepositoresDetails: [],
+         page: 1,        
       }
    },
    mutations,

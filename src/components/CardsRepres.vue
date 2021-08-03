@@ -27,13 +27,11 @@ export default {
    components: {
       CardItem
    },   
-   emits: ['update-page'], 
-   data() {
-      return {                                 
-         page: +this.$route.query.page || 1,                                         
-      }
-   },     
+   emits: ['update-page'],       
    computed: {
+      page() {
+         return this.$store.getters.returnPage;
+      },
       repositories: function() {          
          return this.$store.getters.response.slice(this.filterStart, this.filterEnd);
       }, 
@@ -62,11 +60,13 @@ export default {
    },
    methods: {            
       pageNext() {        
-         this.page++ 
+         // this.page++ 
+         this.$store.commit('updatePage', this.page + 1)
          this.$router.push(`${this.$route.path}?page=${this.page}`)        
       },
       pagePrev() {                   
-         this.page--
+         // this.page--
+         this.$store.commit('updatePage', this.page - 1)
          this.$router.push(`${this.$route.path}?page=${this.page}`)         
       },       
    }               

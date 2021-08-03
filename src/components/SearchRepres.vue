@@ -49,7 +49,9 @@ export default {
                return
             }
 
-            await this.$store.dispatch('requestReprisitories');                     
+            await this.$store.dispatch('requestReprisitories');
+            this.$store.commit('updatePage', this.page = 1)
+            this.$router.push(`${this.$route.path}?page=${this.$store.getters.returnPage}`)                       
             this.show = true;            
             this.warning = false;            
          } catch (error) { 

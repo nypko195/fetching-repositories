@@ -4,5 +4,8 @@ export default {
    },
    response(state) {
       return state.arrayOfRepositoresDetails;
-   }            
+   },   
+   returnPage(state) {
+      return state.page;
+   }
 }

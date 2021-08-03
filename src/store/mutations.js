@@ -5,4 +5,7 @@ export default {
    requestResponse(state, payload) {
       state.arrayOfRepositoresDetails = payload;
    },   
+   updatePage(state, payload) {
+      state.page = payload;
+   }
 }
